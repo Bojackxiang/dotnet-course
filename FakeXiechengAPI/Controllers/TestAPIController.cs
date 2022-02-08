@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +14,9 @@ namespace FakeXiechengAPI.Controllers
         {
             Console.WriteLine("test controller");
             // return View();
-            return new string[] {"1", "2"};
+            return new[] {"1", "2"};
         }
-        
+
         [HttpGet("{id}")]
         public string Index(int Id)
         {

@@ -1,4 +1,4 @@
-using System;
+using FakeXiechengAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +14,8 @@ namespace FakeXiechengAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            // 相当添加了一个 service
+            services.AddTransient<ITouristRouteRepo, MockTouristRouteRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,10 +33,10 @@ namespace FakeXiechengAPI
                 // endpoints.MapGet("/test",
                 //     async context =>
                 //     {
-                //         throw new Exception("test exception");
-                //         // await context.Response.WriteAsync("Hello World from test!");
+                //         // throw new Exception("test exception");
+                //         await context.Response.WriteAsync("Hello World from test!");
                 //     });
-                
+
                 endpoints.MapControllers();
             });
         }

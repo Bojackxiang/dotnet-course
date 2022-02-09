@@ -8,13 +8,13 @@ namespace FakeXiechengAPI.Services
     public class MockTouristRouteRepo : ITouristRouteRepo
     {
         private List<TouristRoute> _routes;
-        
+
         // constructor
         public MockTouristRouteRepo()
         {
-            if (_routes == null) InitialRouteData();
+            InitialRouteData();
         }
-        
+
         public IEnumerable<TouristRoute> GetTouristRoutes()
         {
             return _routes;

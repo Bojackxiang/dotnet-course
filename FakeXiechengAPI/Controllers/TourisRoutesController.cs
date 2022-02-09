@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FakeXiechengAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FakeXiechengAPI.Controllers
@@ -12,7 +7,7 @@ namespace FakeXiechengAPI.Controllers
     [ApiController]
     public class TouristRoutesController : ControllerBase
     {
-        private ITouristRouteRepo _touristRouteRepo;
+        private readonly ITouristRouteRepo _touristRouteRepo;
 
         // 因为 在 configure service 中已经注入了service，所以
         // 这边 直接就能在 项目中找到 repo，然后进行赋值

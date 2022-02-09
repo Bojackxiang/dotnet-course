@@ -1,47 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FakeXiechengAPI.Database;
 using FakeXiechengAPI.Models;
 
 namespace FakeXiechengAPI.Services
 {
-    public class MockTouristRouteRepo : ITouristRouteRepo
+    public class TouristRouteRepo : ITouristRouteRepo
     {
-        private List<TouristRoute> _routes;
+        private readonly AppDbContext context;
 
         // constructor
-        public MockTouristRouteRepo()
+        public TouristRouteRepo(AppDbContext context)
         {
-            InitialRouteData();
+            this.context = context;
         }
 
         public IEnumerable<TouristRoute> GetTouristRoutes()
         {
-            return _routes;
+            return context.TouristRoutes;
         }
 
         public TouristRoute GetTouristRouteById(Guid touristRouteId)
         {
             // linq
-            return _routes.FirstOrDefault(n => n.Id == touristRouteId);
-        }
-
-
-        private void InitialRouteData()
-        {
-            _routes = new List<TouristRoute>
-            {
-                new TouristRoute
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "黄山",
-                    Description = "黄山真好玩！",
-                    OriginalPrice = 998,
-                    Features = "<p>吃住行旅游</p>",
-                    Fees = "<p>交通费用自理</p>",
-                    Notes = "<p>小心危险</p>"
-                }
-            };
+            return context.TouristRoutes.FirstOrDefault(n => n.Id == touristRouteId);
         }
     }
 }
